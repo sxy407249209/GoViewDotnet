@@ -1,0 +1,27 @@
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>net6.0</TargetFramework>
+    <CopyRefAssembliesToPublishDirectory>true</CopyRefAssembliesToPublishDirectory>
+    <AspNetCoreHostingModel>InProcess</AspNetCoreHostingModel>
+  
+    <CopyRefAssembliesToPublishDirectory>true</CopyRefAssembliesToPublishDirectory>
+</PropertyGroup>
+
+
+
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="6.0.10" />
+    <PackageReference Include="WalkingTec.Mvvm.TagHelpers.LayUI" Version="6.3.7" />
+    <PackageReference Include="WalkingTec.Mvvm.Mvc" Version="6.3.7" />
+</ItemGroup>
+
+  <ItemGroup>
+   <ProjectReference Include="..\GoViewWtm.Model\GoViewWtm.Model.csproj" />
+    <ProjectReference Include="..\GoViewWtm.DataAccess\GoViewWtm.DataAccess.csproj" />
+    <ProjectReference Include="..\GoViewWtm.ViewModel\GoViewWtm.ViewModel.csproj" />
+ </ItemGroup>
+</Project>
+
+
