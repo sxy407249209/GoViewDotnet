@@ -7,7 +7,12 @@ using WalkingTec.Mvvm.Core.Extensions;
 using WalkingTec.Mvvm.Mvc;
 using GoViewWtm.ViewModel.GoViewApi.GoviewProjectDataVMs;
 using GoViewWtm.Model.GoViewModel;
-
+using GoViewWtm.ViewModel.GoViewApi;
+using System.Text;
+using System.Reflection.Metadata;
+using Fare;
+using Microsoft.CodeAnalysis;
+using WalkingTec.Mvvm.Mvc.Binders;
 
 namespace GoViewWtm.Controllers
 {
@@ -15,153 +20,102 @@ namespace GoViewWtm.Controllers
     [AuthorizeJwtWithCookie]
     [ActionDescription("项目数据")]
     [ApiController]
-    [Route("api/GoviewProjectData")]
-	public partial class GoviewProjectDataApiController : BaseApiController
+    [Route("api/goview/project")]
+    public partial class GoviewProjectDataApiController : BaseApiController
     {
-        [ActionDescription("Sys.Search")]
-        [HttpPost("Search")]
-		public IActionResult Search(GoviewProjectDataApiSearcher searcher)
-        {
-            if (ModelState.IsValid)
-            {
-                var vm = Wtm.CreateVM<GoviewProjectDataApiListVM>(passInit: true);
-                vm.Searcher = searcher;
-                return Content(vm.GetJson());
-            }
-            else
-            {
-                return BadRequest(ModelState.GetErrorJson());
-            }
-        }
-
+        //获取设计数据
+        [Public]
         [ActionDescription("Sys.Get")]
-        [HttpGet("{id}")]
-        public GoviewProjectDataApiVM Get(string id)
+        [HttpGet("getData")]
+        public IActionResult Get(string projectId)
         {
-            var vm = Wtm.CreateVM<GoviewProjectDataApiVM>(id);
-            return vm;
-        }
+            var pid = Convert.ToInt32(projectId);
+            var model = DC.Set<GoviewProjectData>().FirstOrDefault(x => x.ProjectId == pid);
+            var pro = DC.Set<GoviewProject>().FirstOrDefault(x => x.ID == pid);
+            if (pro!=null && model!=null)
+            {              
+                
 
-        [ActionDescription("Sys.Create")]
-        [HttpPost("Add")]
-        public IActionResult Add(GoviewProjectDataApiVM vm)
-        {
-            if (!ModelState.IsValid)
-            {
-                return BadRequest(ModelState.GetErrorJson());
-            }
-            else
-            {
-                vm.DoAdd();
-                if (!ModelState.IsValid)
+                if (model.ContentData == null)
                 {
-                    return BadRequest(ModelState.GetErrorJson());
+                    GoViewDataReturn goViewDataReturn = new()
+                    {
+                        code = 200,
+                        msg = "无数据",
+                        data = null,
+                    };
+                    return Ok(goViewDataReturn);
                 }
                 else
                 {
-                    return Ok(vm.Entity);
+                    var temp = new
+                    {
+                        content = Encoding.UTF8.GetString(model.ContentData),
+                        createTime = pro.CreateTime,
+                        createUserId = pro.CreateUserId.ToString(),
+                        id = projectId,
+                        indexImage = pro.IndexImage,
+                        isDelete = pro.IsDelete,
+                        projectName = pro.ProjectName,
+                        remarks = pro.Remarks,
+                        state = pro.State
+                    };
+                    GoViewDataReturn goViewDataReturn = new()
+                    {
+                        code = 200,
+                        msg = "获取成功",
+                        data = temp,
+                    };
+                    return Ok(goViewDataReturn);
                 }
-            }
 
+                
+            }         
+            GoViewDataReturn goViewDataReturn1 = new()
+            {
+                code = 500,
+                msg = "获取失败",
+            };
+            return Ok(goViewDataReturn1);
         }
-
+        //保存
         [ActionDescription("Sys.Edit")]
-        [HttpPut("Edit")]
-        public IActionResult Edit(GoviewProjectDataApiVM vm)
+        [HttpPost("save/data")]
+        [StringNeedLTGT]
+        public IActionResult Edit([FromForm] GoviewProjectDataCURDVM data)
         {
-            if (!ModelState.IsValid)
+
+            var model = DC.Set<GoviewProjectData>().FirstOrDefault(x => x.ProjectId == data.projectId);
+            if (model!=null)
             {
-                return BadRequest(ModelState.GetErrorJson());
-            }
-            else
-            {
-                vm.DoEdit(false);
-                if (!ModelState.IsValid)
+                model.ContentData = Encoding.ASCII.GetBytes(data.content);
+                DC.Set<GoviewProjectData>().Update(model);
+                int x = DC.SaveChanges();
+                if (x>0)
                 {
-                    return BadRequest(ModelState.GetErrorJson());
-                }
-                else
-                {
-                    return Ok(vm.Entity);
-                }
+                    GoViewDataReturn goViewDataReturn = new()
+                    {
+                        code = 200,
+                        msg = "数据保存成功",
+                    };
+                    return Ok(goViewDataReturn);
+                }             
             }
+            GoViewDataReturn goViewDataReturn1 = new()
+            {
+                code = 500,
+                msg = "数据保存失败",
+            };
+            return Ok(goViewDataReturn1);
+
         }
 
-		[HttpPost("BatchDelete")]
-        [ActionDescription("Sys.Delete")]
-        public IActionResult BatchDelete(string[] ids)
-        {
-            var vm = Wtm.CreateVM<GoviewProjectDataApiBatchVM>();
-            if (ids != null && ids.Count() > 0)
-            {
-                vm.Ids = ids;
-            }
-            else
-            {
-                return Ok();
-            }
-            if (!ModelState.IsValid || !vm.DoBatchDelete())
-            {
-                return BadRequest(ModelState.GetErrorJson());
-            }
-            else
-            {
-                return Ok(ids.Count());
-            }
-        }
+       
+        
 
+		
 
-        [ActionDescription("Sys.Export")]
-        [HttpPost("ExportExcel")]
-        public IActionResult ExportExcel(GoviewProjectDataApiSearcher searcher)
-        {
-            var vm = Wtm.CreateVM<GoviewProjectDataApiListVM>();
-            vm.Searcher = searcher;
-            vm.SearcherMode = ListVMSearchModeEnum.Export;
-            return vm.GetExportData();
-        }
-
-        [ActionDescription("Sys.CheckExport")]
-        [HttpPost("ExportExcelByIds")]
-        public IActionResult ExportExcelByIds(string[] ids)
-        {
-            var vm = Wtm.CreateVM<GoviewProjectDataApiListVM>();
-            if (ids != null && ids.Count() > 0)
-            {
-                vm.Ids = new List<string>(ids);
-                vm.SearcherMode = ListVMSearchModeEnum.CheckExport;
-            }
-            return vm.GetExportData();
-        }
-
-        [ActionDescription("Sys.DownloadTemplate")]
-        [HttpGet("GetExcelTemplate")]
-        public IActionResult GetExcelTemplate()
-        {
-            var vm = Wtm.CreateVM<GoviewProjectDataApiImportVM>();
-            var qs = new Dictionary<string, string>();
-            foreach (var item in Request.Query.Keys)
-            {
-                qs.Add(item, Request.Query[item]);
-            }
-            vm.SetParms(qs);
-            var data = vm.GenerateTemplate(out string fileName);
-            return File(data, "application/vnd.ms-excel", fileName);
-        }
-
-        [ActionDescription("Sys.Import")]
-        [HttpPost("Import")]
-        public ActionResult Import(GoviewProjectDataApiImportVM vm)
-        {
-            if (vm!=null && (vm.ErrorListVM.EntityList.Count > 0 || !vm.BatchSaveData()))
-            {
-                return BadRequest(vm.GetErrorJson());
-            }
-            else
-            {
-                return Ok(vm?.EntityList?.Count ?? 0);
-            }
-        }
+        
 
 
     }

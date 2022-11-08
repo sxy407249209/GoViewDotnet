@@ -25,12 +25,7 @@ namespace GoViewWtm.Test
             _controller = MockController.CreateApi<GoviewProjectApiController>(new DataContext(_seed, DBTypeEnum.Memory), "user");
         }
 
-        [TestMethod]
-        public void SearchTest()
-        {
-            ContentResult rv = _controller.Search(new GoviewProjectApiSearcher()) as ContentResult;
-            Assert.IsTrue(string.IsNullOrEmpty(rv.Content)==false);
-        }
+       
 
         [TestMethod]
         public void CreateTest()
@@ -44,7 +39,7 @@ namespace GoViewWtm.Test
             v.CreateTime = DateTime.Parse("2024-03-08 22:41:44");
             v.IsDelete = 58;
             v.IndexImage = "2i";
-            v.Remarks = 83;
+            v.Remarks = "83";
             vm.Entity = v;
             var rv = _controller.Add(vm);
             Assert.IsInstanceOfType(rv, typeof(OkObjectResult));
@@ -76,7 +71,7 @@ namespace GoViewWtm.Test
                 v.CreateTime = DateTime.Parse("2024-03-08 22:41:44");
                 v.IsDelete = 58;
                 v.IndexImage = "2i";
-                v.Remarks = 83;
+                v.Remarks = "83";
                 context.Set<GoviewProject>().Add(v);
                 context.SaveChanges();
             }
@@ -91,7 +86,7 @@ namespace GoViewWtm.Test
             v.CreateTime = DateTime.Parse("2022-03-29 22:41:44");
             v.IsDelete = 43;
             v.IndexImage = "gk";
-            v.Remarks = 38;
+            v.Remarks = "38";
             vm.Entity = v;
             vm.FC = new Dictionary<string, object>();
 			
@@ -132,7 +127,7 @@ namespace GoViewWtm.Test
                 v.CreateTime = DateTime.Parse("2024-03-08 22:41:44");
                 v.IsDelete = 58;
                 v.IndexImage = "2i";
-                v.Remarks = 83;
+                v.Remarks = "83";
                 context.Set<GoviewProject>().Add(v);
                 context.SaveChanges();
             }
@@ -154,14 +149,14 @@ namespace GoViewWtm.Test
                 v1.CreateTime = DateTime.Parse("2024-03-08 22:41:44");
                 v1.IsDelete = 58;
                 v1.IndexImage = "2i";
-                v1.Remarks = 83;
+                v1.Remarks = "83";
                 v2.ID = 13;
                 v2.ProjectName = "DsPHCfV";
                 v2.State = 41;
                 v2.CreateTime = DateTime.Parse("2022-03-29 22:41:44");
                 v2.IsDelete = 43;
                 v2.IndexImage = "gk";
-                v2.Remarks = 38;
+                v2.Remarks = "38";
                 context.Set<GoviewProject>().Add(v1);
                 context.Set<GoviewProject>().Add(v2);
                 context.SaveChanges();

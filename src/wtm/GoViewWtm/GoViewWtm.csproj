@@ -22,6 +22,10 @@
     <ProjectReference Include="..\GoViewWtm.DataAccess\GoViewWtm.DataAccess.csproj" />
     <ProjectReference Include="..\GoViewWtm.ViewModel\GoViewWtm.ViewModel.csproj" />
  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="新文件夹\" />
+  </ItemGroup>
 </Project>
 
 

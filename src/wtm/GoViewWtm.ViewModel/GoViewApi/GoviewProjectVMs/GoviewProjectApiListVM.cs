@@ -30,8 +30,9 @@ namespace GoViewWtm.ViewModel.GoViewApi.GoviewProjectVMs
         public override IOrderedQueryable<GoviewProjectApi_View> GetSearchQuery()
         {
             var query = DC.Set<GoviewProject>()
+                .Where(x=>x.IsDelete==-1)
                 .CheckContain(Searcher.ProjectName, x=>x.ProjectName)
-                .CheckEqual(Searcher.Remarks, x=>x.Remarks)
+                .CheckContain(Searcher.Remarks, x=>x.Remarks)
                 .Select(x => new GoviewProjectApi_View
                 {
 				    ID = x.ID,

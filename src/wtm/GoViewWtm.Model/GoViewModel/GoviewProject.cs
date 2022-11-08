@@ -24,7 +24,7 @@ namespace GoViewWtm.Model.GoViewModel
         [Display(Name = "首页图片")]
         public string IndexImage { get; set; }
         [Display(Name = "项目介绍")]
-        public int Remarks { get; set; }
+        public string Remarks { get; set; }
 
     }
 }

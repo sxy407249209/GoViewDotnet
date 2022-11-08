@@ -15,7 +15,7 @@ namespace GoViewWtm.ViewModel.GoViewApi.GoviewProjectVMs
         [Display(Name = "项目名称")]
         public String ProjectName { get; set; }
         [Display(Name = "项目介绍")]
-        public Int32? Remarks { get; set; }
+        public string Remarks { get; set; }
 
         protected override void InitVM()
         {

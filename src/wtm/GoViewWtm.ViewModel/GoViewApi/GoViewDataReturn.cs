@@ -1,4 +1,5 @@
-﻿using System;
+﻿using NPOI.SS.Formula.Functions;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -61,6 +62,23 @@ namespace GoViewWtm.ViewModel.GoViewApi
         public int tokenActivityTimeout { get; set; }
         public string loginDevice { get; set; }
         public string tag { get; set; }
+
+    }
+
+
+    public class GoviewFileInfo 
+    {
+        public string id { get; set; }
+        public string fileName { get; set; }
+        public string bucketName { get; set; }
+        public long fileSize { get; set; }
+        public string fileSuffix { get; set; }
+        public string createUserId { get; set; }
+        public string createUserName { get; set; }
+        public DateTime createTime { get; set; }
+        public string updateUserId { get; set; }
+        public string updateUserName { get; set; }
+        public string updateTime { get; set; }
 
     }
 }
