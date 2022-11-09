@@ -114,13 +114,17 @@ namespace GoViewWtm.Controllers
         [HttpPost("edit")]
         public IActionResult Edit(GoviewProjectCURDVM data)
         {
-            var vm = Wtm.CreateVM<GoviewProjectApiVM>(data.id);
+            //var vm = Wtm.CreateVM<GoviewProjectApiVM>(data.id);
+            var pid = Convert.ToInt32(data.id);
+            var model = DC.Set<GoviewProject>().FirstOrDefault(x => x.ID == pid);
 
-            vm.Entity.IndexImage = data.indexImage;
-            vm.Entity.ProjectName = data.projectName;
-            vm.Entity.Remarks = data.remarks;
-            vm.DoEdit(true);
-            if (!ModelState.IsValid)
+            model.IndexImage = data.indexImage;
+            model.ProjectName = data.projectName != null ? data.projectName : model.ProjectName; 
+            model.Remarks = data.remarks!=null? data.remarks: model.Remarks;
+            DC.Set<GoviewProject>().Update(model);
+            int x = DC.SaveChanges();
+            
+            if (x<0)
             {
                 GoViewDataReturn goViewDataReturn = new()
                 {

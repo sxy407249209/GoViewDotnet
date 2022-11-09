@@ -18,6 +18,9 @@ namespace GoViewWtm.Areas.GoViewApi.Controllers
     [ApiController]
     public class GoViewFileController : BaseApiController
     {
+
+
+        [HttpPost]
         [Route("upload")]
         public async Task<IActionResult> Upload([FromServices] WtmFileProvider fp, string sm = null, string groupName = null, string subdir = null, string extra = null, string csName = null)
         {
@@ -94,5 +97,30 @@ namespace GoViewWtm.Areas.GoViewApi.Controllers
             
            
         }
+
+        [Public]
+        [HttpGet]
+        [Route("getImages/{id}")]
+        public async Task<IActionResult> GetImages(string id)
+        {
+            var file = await DC.Set<FileAttachment>().FirstOrDefaultAsync(x => x.FileName == id);
+            if (file!=null)
+            {
+                var response = File(file.FileData, "image/jpeg");
+                return response;
+            }
+
+            GoViewDataReturn goViewDataReturn1 = new()
+            {
+                code = 500,
+                msg = "获取图片失败",
+            };
+            return Ok(goViewDataReturn1);
+
+        }
+
+
+        
+
     }
 }

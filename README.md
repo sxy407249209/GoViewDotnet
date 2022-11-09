@@ -5,33 +5,28 @@ GoView .Net后台服务
 
 #### 软件架构
 软件架构说明
+计划实现wtm和volcore两大.NET快速开发框架后台对接
+目前wtm已实现
+
+#### wtm安装教程
+
+1.  wtm框架为net6.0版本，启动前确认本机知否安装.NET6 或者 vs2022
+1.  下载或者clone源码 wtm项目再src/wtm中
+2.  VS双击GoViewWtm.sln vscode则再wtm目录打开
+3.  在GoViewWtm修改appsettings.json配置文件中Connections数据库连接字符串，支持mysql,sqlserver,pgsql,sqlite,oracle。其中DBType是目标数据库，Value是连接字符串。
+4.  项目启动为ef codefirst方式，如果是一次试用，建议数据库连接字符串中Database随便给一个数据库名称就行了，不要使用已经存在的数据库名称，也不需要手动去创建空的库。ef会给你自动生成。
+5.  项目启动成功后账号是admin 密码000000
 
 
-#### 安装教程
 
-1.  xxxx
-2.  xxxx
-3.  xxxx
+#### 开源项目地址
 
-#### 使用说明
-
-1.  xxxx
-2.  xxxx
-3.  xxxx
-
-#### 参与贡献
-
-1.  Fork 本仓库
-2.  新建 Feat_xxx 分支
-3.  提交代码
-4.  新建 Pull Request
+1.  goview https://gitee.com/dromara/go-view
+2.  wtm https://gitee.com/liuliang-wtm/WTM?_from=gitee_search
+3.  volcore https://gitee.com/x_discoverer/Vue.NetCore
 
 
-#### 特技
 
-1.  使用 Readme\_XXX.md 来支持不同的语言，例如 Readme\_en.md, Readme\_zh.md
-2.  Gitee 官方博客 [blog.gitee.com](https://blog.gitee.com)
-3.  你可以 [https://gitee.com/explore](https://gitee.com/explore) 这个地址来了解 Gitee 上的优秀开源项目
-4.  [GVP](https://gitee.com/gvp) 全称是 Gitee 最有价值开源项目，是综合评定出的优秀开源项目
-5.  Gitee 官方提供的使用手册 [https://gitee.com/help](https://gitee.com/help)
-6.  Gitee 封面人物是一档用来展示 Gitee 会员风采的栏目 [https://gitee.com/gitee-stars/](https://gitee.com/gitee-stars/)
+#### 说明
+有问题，提交issue
+

@@ -26,8 +26,8 @@ namespace GoViewWtm.Areas.GoViewApi.Controllers
         {
             string host = _httpContextAccessor.HttpContext.Request.Host.ToString();
             bool ishttps = _httpContextAccessor.HttpContext.Request.IsHttps;
-            string http = ishttps == true ? "http" : "https";
-            var oosurl = http + "://" + host + "/api/_file/getuserphoto/";
+            string http = ishttps == true ? "https" : "http";
+            var oosurl = http + "://" + host + "/api/goview/project/getImages/";
             OssInfo ossInfo = new() { bucketURL = oosurl,BucketName= "getuserphoto" };
             GoViewDataReturn goViewDataReturn = new()
             {
