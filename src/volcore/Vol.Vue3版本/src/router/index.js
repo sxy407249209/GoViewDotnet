@@ -57,6 +57,14 @@ const routes = [
         meta:{
           keepAlive:false
         }
+      },
+      {
+        path: '/goviewporject',  //消息推送
+        name: 'goviewporject',
+        component: () => import('@/views/goview/goviewvol/Goviewprojects.vue'),
+        meta:{
+          keepAlive:false
+        }
       }
     ]
   },
