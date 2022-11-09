@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio Version 16
-VisualStudioVersion = 16.0.29613.14
+# Visual Studio Version 17
+VisualStudioVersion = 17.3.32929.385
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "VOL.Core", "VOL.Core\VOL.Core.csproj", "{9F72743E-647E-4D37-85D1-07EC9CD0AB71}"
 EndProject
@@ -12,6 +12,8 @@ EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "VOL.System", "VOL.System\VOL.System.csproj", "{9F688BF2-B51B-4812-B0C4-8F5D13114E9E}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "VOL.WebApi", "VOL.WebApi\VOL.WebApi.csproj", "{4DB3C91B-93FE-4937-8B58-DDD3F57D4607}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GoView", "GoView\GoView.csproj", "{79EE8988-51FE-4C33-B708-A2B8694FA79D}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -39,6 +41,10 @@ Global
 		{4DB3C91B-93FE-4937-8B58-DDD3F57D4607}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{4DB3C91B-93FE-4937-8B58-DDD3F57D4607}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{4DB3C91B-93FE-4937-8B58-DDD3F57D4607}.Release|Any CPU.Build.0 = Release|Any CPU
+		{79EE8988-51FE-4C33-B708-A2B8694FA79D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{79EE8988-51FE-4C33-B708-A2B8694FA79D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{79EE8988-51FE-4C33-B708-A2B8694FA79D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{79EE8988-51FE-4C33-B708-A2B8694FA79D}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

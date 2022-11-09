@@ -12,6 +12,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\GoView\GoView.csproj" />
     <ProjectReference Include="..\VOL.Builder\VOL.Builder.csproj" />
     <ProjectReference Include="..\VOL.Core\VOL.Core.csproj" />
     <ProjectReference Include="..\VOL.Entity\VOL.Entity.csproj" />

@@ -66,6 +66,10 @@ let viewgird = [
         path: '/Sys_QuartzLog',
         name: 'Sys_QuartzLog',
         component: () => import('@/views/system/quartz/Sys_QuartzLog.vue')
+    }    ,{
+        path: '/Goviewprojects',
+        name: 'Goviewprojects',
+        component: () => import('@/views/goview/goviewvol/Goviewprojects.vue')
     }]
 
 export default viewgird
