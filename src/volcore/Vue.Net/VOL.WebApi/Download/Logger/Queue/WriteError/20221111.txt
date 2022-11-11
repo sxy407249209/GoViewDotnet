@@ -1,3 +1,0 @@
-The used command is not allowed with this MySQL version   at VOL.Core.Dapper.SqlDapper.MySqlBulkInsert(DataTable table, String tableName, String fileName, String tmpPath) in D:\Workspace\go-view-dotnet\src\volcore\Vue.Net\VOL.Core\Dapper\SqlDapper.cs:line 810
-   at VOL.Core.Dapper.SqlDapper.BulkInsert(DataTable table, String tableName, Nullable`1 sqlBulkCopyOptions, String fileName, String tmpPath) in D:\Workspace\go-view-dotnet\src\volcore\Vue.Net\VOL.Core\Dapper\SqlDapper.cs:line 749
-   at VOL.Core.Services.Logger.Start() in D:\Workspace\go-view-dotnet\src\volcore\Vue.Net\VOL.Core\Services\Logger.cs:line 139VOL.Core

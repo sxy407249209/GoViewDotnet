@@ -22,7 +22,7 @@ namespace VOL.WebApi.Controllers.VolToGoView
     /// goview用户登录控制器
     /// </summary>
     [Route("api/goview/sys")]
-    [ApiController, JWTAuthorize()]
+    [ ApiController,JWTAuthorize()]
     public class AccountController : ApiBaseController<ISys_UserService>
     {
         private ISys_UserRepository _userRepository;
@@ -40,7 +40,7 @@ namespace VOL.WebApi.Controllers.VolToGoView
         }
         [AllowAnonymous]
         [HttpPost("login")]
-        public async Task<GoViewDataReturn> Login(GoViewAccount viewAccount)
+        public async Task<GoViewDataReturn> Login([FromBody]GoViewAccount viewAccount)
         {
             
             var user = await _userRepository
