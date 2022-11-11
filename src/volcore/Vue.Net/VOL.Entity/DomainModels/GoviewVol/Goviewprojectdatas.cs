@@ -13,8 +13,8 @@ using VOL.Entity.SystemModels;
 
 namespace VOL.Entity.DomainModels
 {
-    [Entity(TableCnName = "大屏项目",TableName = "Goviewprojects")]
-    public partial class Goviewprojects:BaseEntity
+    [Entity(TableCnName = "大屏设计数据",TableName = "Goviewprojectdatas")]
+    public partial class Goviewprojectdatas:BaseEntity
     {
         /// <summary>
        ///
@@ -29,19 +29,11 @@ namespace VOL.Entity.DomainModels
        /// <summary>
        ///
        /// </summary>
-       [Display(Name ="ProjectName")]
-       [Column(TypeName="nvarchar(max)")]
-       [Editable(true)]
-       public string ProjectName { get; set; }
-
-       /// <summary>
-       ///
-       /// </summary>
-       [Display(Name ="State")]
+       [Display(Name ="ProjectId")]
        [Column(TypeName="int")]
        [Editable(true)]
        [Required(AllowEmptyStrings=false)]
-       public int State { get; set; }
+       public int ProjectId { get; set; }
 
        /// <summary>
        ///
@@ -64,27 +56,10 @@ namespace VOL.Entity.DomainModels
        /// <summary>
        ///
        /// </summary>
-       [Display(Name ="IsDelete")]
-       [Column(TypeName="int")]
-       [Editable(true)]
-       [Required(AllowEmptyStrings=false)]
-       public int IsDelete { get; set; }
-
-       /// <summary>
-       ///
-       /// </summary>
-       [Display(Name ="IndexImage")]
+       [Display(Name ="ContentData")]
        [Column(TypeName="nvarchar(max)")]
        [Editable(true)]
-       public string IndexImage { get; set; }
-
-       /// <summary>
-       ///
-       /// </summary>
-       [Display(Name ="Remarks")]
-       [Column(TypeName="nvarchar(max)")]
-       [Editable(true)]
-       public string Remarks { get; set; }
+       public byte[] ContentData { get; set; }
 
        
     }
